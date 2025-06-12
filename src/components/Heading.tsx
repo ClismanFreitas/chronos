@@ -1,5 +1,9 @@
-import styles from'./Heading.module.css'
+import styles from "./Heading.module.css"
 
-export const Heading = () => {
-    return <h1 className={`${styles.heading} ${styles.purple}`}>Olá Mundo!</h1>
+type HeadingProps = {
+    children: React.ReactNode
+}
+
+export const Heading = ({ children }: HeadingProps) => {
+    return <h1 className={styles.heading}>{children}</h1>
 }

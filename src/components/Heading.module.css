@@ -1,7 +1,6 @@
-.heading {
-    background-color: white;
-}
-
-.purple {
-    color: purple;
+.heading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.4rem;
 }
