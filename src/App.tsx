@@ -6,6 +6,7 @@ import { DeafaltButton } from './components/DefaultButton'
 import { DeafaltInput } from './components/Input'
 import { Logo } from './components/Logo'
 import { Menu } from './components/Menu'
+import { Footer } from './components/footer'
 
 import './styles/global.css'
 import './styles/theme.css'
@@ -47,7 +48,7 @@ export const App = () => {
           </Container>
 
           <Container>
-            asda
+            <Footer/>
           </Container>
 
         </>
