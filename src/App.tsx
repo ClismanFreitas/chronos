@@ -1,5 +1,9 @@
+import { PlayCircleIcon } from 'lucide-react'
 import { Container } from './components/Container'
 import { CountDown } from './components/CountDown'
+import { Cycles } from './components/Cycles'
+import { DeafaltButton } from './components/DefaultButton'
+import { DeafaltInput } from './components/Input'
 import { Logo } from './components/Logo'
 import { Menu } from './components/Menu'
 
@@ -24,25 +28,28 @@ export const App = () => {
 
           <Container>
             <form className="form" action="">
-              <div className="fomRow">
-                <label htmlFor="input">Task</label>
-                <input id="input" type="text" />
+              <div className="formRow">
+                <DeafaltInput labelText='task' id='meuInput' type='text' placeholder='Digite algo'/>
               </div>
 
-              <div className="fomRow">
+              <div className="formRow">
                 <p>Lorem ipsum dolor sit amet.</p>
               </div>
 
-              <div className="fomRow">
-                <p>Ciclos</p>
-                <p>0 0 0 0</p>
+              <div className="formRow">
+                <Cycles />
               </div>
 
-              <div className="fomRow">
-                <button>Enviar</button>
+              <div className="formRow">
+                <DeafaltButton icon={<PlayCircleIcon />}/>
               </div>
             </form>
           </Container>
+
+          <Container>
+            asda
+          </Container>
+
         </>
     )
 } 
