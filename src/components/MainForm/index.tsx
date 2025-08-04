@@ -1,13 +1,28 @@
-import { PlayCircleIcon } from "lucide-react";
+import { PlayCircleIcon, Target } from "lucide-react";
 import { Cycles } from "../Cycles";
-import { DeafaltButton } from "../DefaultButton";
+import { DefaultButton } from "../DefaultButton";
 import { DeafaltInput } from "../Input";
+import { useState } from "react";
 
 export function MainForm() {
+    const [taskName, setTaskName] = useState('')
+
+    const handleCreateNewTask = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+        console.log('CERTOOO');
+    }
+
     return(
-        <form className="form" action="">
+        <form onSubmit={handleCreateNewTask} className="form" action="">
               <div className="formRow">
-                <DeafaltInput labelText='task' id='meuInput' type='text' placeholder='Digite algo'/>
+                <DeafaltInput 
+                labelText='task' 
+                id='meuInput' 
+                type='text' 
+                placeholder='Digite algo'
+                value={taskName}
+                onChange={(e) => setTaskName(e.target.value)}
+                />
               </div>
 
               <div className="formRow">
@@ -19,7 +34,7 @@ export function MainForm() {
               </div>
 
               <div className="formRow">
-                <DeafaltButton icon={<PlayCircleIcon />}/>
+                <DefaultButton icon={<PlayCircleIcon />}/>
               </div>
             </form>
     )
