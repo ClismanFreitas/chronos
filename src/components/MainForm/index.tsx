@@ -1,4 +1,4 @@
-import { PlayCircleIcon, Target } from "lucide-react";
+import { PlayCircleIcon} from "lucide-react";
 import { Cycles } from "../Cycles";
 import { DefaultButton } from "../DefaultButton";
 import { DeafaltInput } from "../Input";
