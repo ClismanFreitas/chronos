@@ -3,12 +3,40 @@ import { Cycles } from "../Cycles";
 import { DefaultButton } from "../DefaultButton";
 import { DeafaltInput } from "../Input";
 import { useRef} from "react";
+import type { TaskModel } from "../../models/TaskModel";
+import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 
 export function MainForm() {
+    const { setState } = useTaskContext()
     const taskNameInput = useRef<HTMLInputElement>(null)
 
     const handleCreateNewTask = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+
+        if(taskNameInput.current === null)return
+
+        const taskName = taskNameInput.current.value.trim()
+        
+        if(!taskName){
+          alert("Digite o nome da tarefa")
+          return
+        }
+
+        const newTask: TaskModel ={
+          id: Date.now().toString(),
+          name: taskName,
+          startData: Date.now(),
+          completeDate: null,
+          interruptDate: null,
+          duration: 1,
+          type: 'shortBreakTime'
+        }
+
+        setState(prevState => {
+          return{
+            ...prevState
+          }
+        })
     }
 
     return(
