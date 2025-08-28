@@ -1,4 +1,4 @@
-import { PlayCircleIcon } from "lucide-react";
+import { PlayCircleIcon, StopCircleIcon } from "lucide-react";
 import { Cycles } from "../Cycles";
 import { DefaultButton } from "../DefaultButton";
 import { DeafaltInput } from "../Input";
@@ -15,6 +15,7 @@ export function MainForm() {
 
   const nextCycle = getNextCycle(state.currentCycle)
   const nextCycleType = getNextCycleType(nextCycle)
+  console.log(state);
 
   const handleCreateNewTask = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -61,11 +62,12 @@ export function MainForm() {
           type='text'
           placeholder='Digite algo'
           ref={taskNameInput}
+          disabled={!!state.activeTask}
         />
       </div>
 
       <div className="formRow">
-        <p>Próximo intervalo é de 25min.</p>
+        <p>próximo intervalo é de 25min.</p>
       </div>
 
       {state.currentCycle > 0 &&(
@@ -75,7 +77,22 @@ export function MainForm() {
       )}
 
       <div className="formRow">
-        <DefaultButton icon={<PlayCircleIcon />} />
+        {!state.activeTask ? (
+          <DefaultButton 
+            aria-label="Iniciar nova tarefa"
+            title="Iniciar nova tarefa"
+            type="submit"
+            icon={<PlayCircleIcon />} 
+          />
+        ) : (
+          <DefaultButton 
+            aria-label="Interromper tarefa atual"
+            title="Interromper tarefa atual"
+            type="button"
+            color='red'
+            icon={<StopCircleIcon />} 
+          />  
+        )}
       </div>
     </form>
   )
