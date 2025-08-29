@@ -46,9 +46,20 @@ export function MainForm() {
         config: { ...prevState.config },
         activeTask: newTask,
         currentCycle: nextCycle,
-        secondsRemaining, 
+        secondsRemaining,
         formattedSecondsRemaining: formatSeacondsToMinutes(secondsRemaining),
         tasks: [...prevState.tasks, newTask],
+      };
+    });
+  }
+
+  const handleInterruptTask = () => {
+    setState(prevState => {
+      return {
+        ...prevState,
+        activeTask: null,
+        secondsRemaining: 0,
+        formattedSecondsRemaining: "00:00",
       };
     });
   }
@@ -70,28 +81,30 @@ export function MainForm() {
         <p>próximo intervalo é de 25min.</p>
       </div>
 
-      {state.currentCycle > 0 &&(
-      <div className="formRow">
-        <Cycles />
-      </div>
+      {state.currentCycle > 0 && (
+        <div className="formRow">
+          <Cycles />
+        </div>
       )}
 
       <div className="formRow">
-        {!state.activeTask ? (
-          <DefaultButton 
+        {!state.activeTask && (
+          <DefaultButton
             aria-label="Iniciar nova tarefa"
             title="Iniciar nova tarefa"
             type="submit"
-            icon={<PlayCircleIcon />} 
+            icon={<PlayCircleIcon />}
           />
-        ) : (
-          <DefaultButton 
+        )}
+        {!!state.activeTask && (
+          <DefaultButton
             aria-label="Interromper tarefa atual"
             title="Interromper tarefa atual"
             type="button"
             color='red'
-            icon={<StopCircleIcon />} 
-          />  
+            icon={<StopCircleIcon />}
+            onClick={handleInterruptTask}
+          />
         )}
       </div>
     </form>
