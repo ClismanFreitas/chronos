@@ -11,7 +11,7 @@ export const TaskContextProvider = ({ children }: TaskContextProviderProps) => {
 
     return (
         <TaskContext.Provider value={{ state, setState }}>
-            {children}
+            <h1>TESTE</h1>
         </TaskContext.Provider>
     )
 }
