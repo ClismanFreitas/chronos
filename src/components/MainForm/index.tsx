@@ -8,6 +8,7 @@ import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { getNextCycle } from "../../utils/getNextCycle";
 import { getNextCycleType } from "../../utils/getNextCycleType";
 import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
+import { Tips } from "../Tips";
 
 export function MainForm() {
   const { state, dispatch } = useTaskContext()
@@ -15,7 +16,7 @@ export function MainForm() {
 
   const nextCycle = getNextCycle(state.currentCycle)
   const nextCycleType = getNextCycleType(nextCycle)
-  console.log(state);
+
 
   const handleCreateNewTask = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -32,7 +33,8 @@ export function MainForm() {
     const newTask: TaskModel = {
       id: Date.now().toString(),
       name: taskName,
-      startData: Date.now(),
+      // use consistent property name
+      startDate: Date.now(),
       completeDate: null,
       interruptDate: null,
       duration: state.config[nextCycleType],
@@ -40,7 +42,6 @@ export function MainForm() {
     }
 
     dispatch({ type: TaskActionTypes.START_TASK, payload: newTask })
-
   }
 
   const handleInterruptTask = () => {
@@ -61,7 +62,7 @@ export function MainForm() {
       </div>
 
       <div className="formRow">
-        <p>próximo intervalo é de 25min.</p>
+        <Tips />
       </div>
 
       {state.currentCycle > 0 && (
@@ -79,7 +80,7 @@ export function MainForm() {
             icon={<PlayCircleIcon />}
             key="botao_submit"
           />
-          ) : (
+        ) : (
           <DefaultButton
             aria-label="Interromper tarefa atual"
             title="Interromper tarefa atual"
