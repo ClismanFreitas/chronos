@@ -46,6 +46,12 @@ export const History = () => {
         dispatch({type: TaskActionTypes.RESET_STATE})
     }, [confirmClearHistory, dispatch])
 
+    useEffect(() => {
+        return () => {
+            showMessage.dismiss()
+        }
+    },[])
+
     function handleSortTasks({ field }: Pick<SortTasksOptions, "field">) {
         const newDirection = sorteTaskOptions.direction === "desc" ? "asc" : "desc"
 
@@ -63,6 +69,7 @@ export const History = () => {
     function handleResetHistory() {
         showMessage.dismiss()
         showMessage.confirm("Tem certeza?", (confirmation) => {setConfirmClearHistory(confirmation)})
+
     }
 
     return (
