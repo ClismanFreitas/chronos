@@ -9,11 +9,13 @@ import { formatDate } from "../../utils/formatDate"
 import { getTaskStatus } from "../../utils/getTaskStatus"
 import { useEffect, useState } from "react"
 import { sortTasks, type SortTasksOptions } from "../../utils/sortTasks"
+import { showMessage } from "../../adapters/showMessage"
 import { TaskActionTypes } from "../../contexts/TaskContext/taskActions"
 
 export const History = () => {
 
     const { state, dispatch } = useTaskContext()
+    const [confirmClearHistory, setConfirmClearHistory] = useState(false)
     const hasTasks = state.tasks.length > 0
     const [sorteTaskOptions, setSortTaskOptions] = useState<SortTasksOptions>(() => {
         return {
@@ -35,6 +37,15 @@ export const History = () => {
         }))
     }, [state.tasks])
 
+    useEffect(() => {
+        if(!confirmClearHistory) return
+
+        console.log("apagar historico");
+        setConfirmClearHistory(false)
+
+        dispatch({type: TaskActionTypes.RESET_STATE})
+    }, [confirmClearHistory, dispatch])
+
     function handleSortTasks({ field }: Pick<SortTasksOptions, "field">) {
         const newDirection = sorteTaskOptions.direction === "desc" ? "asc" : "desc"
 
@@ -50,8 +61,8 @@ export const History = () => {
     }
 
     function handleResetHistory() {
-        if (!confirm('Tem certeza')) return
-        dispatch({ type: TaskActionTypes.RESET_STATE })
+        showMessage.dismiss()
+        showMessage.confirm("Tem certeza?", (confirmation) => {setConfirmClearHistory(confirmation)})
     }
 
     return (
