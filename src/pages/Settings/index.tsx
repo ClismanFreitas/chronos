@@ -1,4 +1,4 @@
-import { SaveIcon, Scaling } from "lucide-react"
+import { SaveIcon} from "lucide-react"
 import { Container } from "../../components/Container"
 import { Heading } from "../../components/Heading"
 import { DeafaltInput } from "../../components/Input"
