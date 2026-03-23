@@ -40,7 +40,7 @@ export const Menu = () => {
             <RouterLink className={style.menuLink} href="/history/" aria-label="Ver Historico" title="Ver Historico">
                 <HistoryIcon />
             </RouterLink>
-            <RouterLink className={style.menuLink} href="#" aria-label="Configurações" title="Configurações">
+            <RouterLink className={style.menuLink} href="/settings/" aria-label="Configurações" title="Configurações">
                 <SettingsIcon />
             </RouterLink>
             <RouterLink className={style.menuLink} href="#" aria-label="Mudar o Tema" title="Mudar o Tema" onClick={handleThemeChange}>
